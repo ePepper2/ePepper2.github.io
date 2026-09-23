@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Bombus — A Bee's Year</title>
+<meta name="description" content="Play through a real western bumblebee's annual life cycle, from spring emergence to overwintering.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+
+<header class="game-header">
+  <a href="../index.html">&larr; Back</a>
+  <span class="phase-label" id="phase-label">Phase 1 — Spring Emergence</span>
+</header>
+
+<div class="game-stage">
+  <canvas id="game-canvas"></canvas>
+</div>
+
+<div class="hud-bars">
+  <div class="stat-row">
+    <span class="stat-label">Energy</span>
+    <div class="stat-bar energy-bar" aria-label="Energy">
+      <div id="energy-fill" class="stat-fill energy-fill"></div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <span class="stat-label">Pollen</span>
+    <div class="stat-bar pollen-bar" aria-label="Pollen gathered">
+      <div id="pollen-fill" class="stat-fill pollen-fill"></div>
+      <div id="pollen-goal-marker" class="goal-marker"></div>
+    </div>
+  </div>
+</div>
+
+<div class="field-note" id="field-note"></div>
+
+<div class="landing-prompt" id="landing-prompt">
+  <div class="landing-card">
+    <p id="landing-question"></p>
+    <div class="landing-actions">
+      <button id="land-yes" type="button" class="btn-primary">Land</button>
+      <button id="land-no" type="button" class="btn-secondary">Keep flying</button>
+    </div>
+  </div>
+</div>
+
+<div class="outcome-overlay" id="outcome-overlay">
+  <div class="outcome-card">
+    <h2 id="outcome-title"></h2>
+    <p id="outcome-body"></p>
+    <button id="retry-button" type="button">Try again</button>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+:root {
+  --bg: #0a0e14;
+  --text: #e6edf3;
+  --text-muted: #8b96a5;
+  --accent: #60a5fa;
+  --border: #1e2733;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.game-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  z-index: 5;
+  background: linear-gradient(to bottom, rgba(10, 14, 20, 0.85), transparent);
+}
+
+.game-header a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.game-header a:hover {
+  color: var(--accent);
+}
+
+.phase-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.game-stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+#game-canvas {
+  display: block;
+  touch-action: none;
+}
+
+.hud-bars {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, 80vw);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 5;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-label {
+  width: 46px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.stat-bar {
+  position: relative;
+  flex: 1;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.15s linear;
+}
+
+.energy-fill {
+  background: linear-gradient(90deg, #f4c430, #e8b923);
+}
+
+.pollen-fill {
+  background: linear-gradient(90deg, #d98a3d, #a85f2a);
+}
+
+.goal-marker {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  left: 70%;
+}
+
+.field-note {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  max-width: min(420px, 86vw);
+  background: rgba(16, 21, 29, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 6;
+}
+
+.field-note.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.landing-prompt {
+  position: fixed;
+  left: 50%;
+  bottom: 96px;
+  transform: translateX(-50%) translateY(12px);
+  z-index: 7;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.landing-prompt.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.landing-card {
+  background: rgba(16, 21, 29, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: center;
+  min-width: 240px;
+}
+
+.landing-card p {
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+}
+
+.landing-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.landing-actions button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0a0e14;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  border: 1px solid var(--border) !important;
+}
+
+.outcome-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 14, 20, 0.72);
+  z-index: 10;
+}
+
+.outcome-overlay.visible {
+  display: flex;
+}
+
+.outcome-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 24px;
+  max-width: min(360px, 86vw);
+  text-align: center;
+}
+
+.outcome-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.outcome-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.outcome-card button {
+  background: var(--accent);
+  color: #0a0e14;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
